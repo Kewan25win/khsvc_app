@@ -47,13 +47,16 @@
             box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.06);
             border-color: rgba(59, 130, 246, 0.8);
         }
+        /* input with an icon on the left: leave extra left padding so cursor doesn't overlap */
+        .input-with-icon { padding-left: 2.6rem; }
 
         .icon-input {
-            left: 10px;
+            left: 12px;
             top: 50%;
             transform: translateY(-50%);
-            font-size: .9rem;
-            color: #94a3b8
+            font-size: .95rem;
+            color: #2563eb; /* blue */
+            pointer-events: none; /* allow clicks through to the input */
         }
     </style>
 
@@ -77,10 +80,10 @@
                 <!-- Email -->
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-2 ml-2">Email</label>
-                    <div class="relative">
+                    <div class="relative " >
                         <i class="fas fa-envelope absolute icon-input"></i>
-                        <input wire:model="form.email" type="email" placeholder="example@gmail.com" aria-label="email"
-                            autocomplete="email" class="input-plain pl-10" />
+                            <input wire:model="form.email" type="email" placeholder="example@gmail.com" aria-label="email"
+                                autocomplete="email" class="input-plain input-with-icon" />
                     </div>
                 </div>
 
@@ -89,8 +92,8 @@
                     <label class="block text-sm font-medium text-slate-700 mb-2 ml-2">Password</label>
                     <div class="relative">
                         <i class="fas fa-lock absolute icon-input"></i>
-                        <input wire:model="form.password" type="password" placeholder="••••••••" aria-label="password"
-                            autocomplete="current-password" class="input-plain pl-10" />
+                            <input wire:model="form.password" type="password" placeholder="••••••••" aria-label="password"
+                                autocomplete="current-password" class="input-plain input-with-icon" />
                     </div>
                 </div>
 
