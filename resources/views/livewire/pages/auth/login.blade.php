@@ -64,11 +64,11 @@
         <!-- Logo and header -->
         <div class="text-center mb-8">
             <div
-                class="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-3xl shadow-lg shadow-blue-200 mb-4 transform rotate-3">
-                <i class="fas fa-screwdriver-wrench text-white text-3xl"></i>
+                class="inline-flex items-center justify-center w-20 h-20  bg-blue-600 rounded-3xl shadow-lg shadow-blue-200 mb-4 transform -translate-y-2 rotate-3">
+                <img src="{{ asset('images/LOGOw.png') }}" alt="Logo" class="w-12 h-12 object-contain transform -rotate-3">
             </div>
-            <h1 class="text-3xl font-black text-slate-800 tracking-tight">
-                Khushnaw <span class="text-blue-600">Service Center</span>
+            <h1 class="text-3xl font-black text-blue-800 tracking-tight">
+                Khushnaw <span class="text-slate-600">Service Center</span>
             </h1>
             <p class="text-slate-500 mt-2">Welcome to the admin dashboard</p>
         </div>
