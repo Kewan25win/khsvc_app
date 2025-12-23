@@ -1,63 +1,114 @@
-<div> <!-- ئەمە تاگی سەرەکییە کە هەموو شتەکان کۆدەکاتەوە -->
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-br from-slate-100 to-slate-200">
-        <!-- Header Section -->
-        <div class="mb-8 text-center animate-fade-in-down">
-            <h1 class="text-4xl font-extrabold text-slate-800 tracking-tight mb-2">
-                خۆشناو <span class="text-blue-600">سێرڤیس سێنته‌ر</span>
+<!-- Wrap everything in a single container to avoid Livewire rendering issues -->
+<div class="main-login-container">
+    <!-- Include Tailwind CDN and FontAwesome for quick styling in this view -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;400;700;900&display=swap');
+
+        .main-login-container {
+            font-family: 'Vazirmatn', sans-serif !important;
+            background: #f1f5f9;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: ltr;
+
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(15, 23, 42, 0.04);
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(2, 6, 23, 0.06);
+        }
+
+        /* Thinner, elegant inputs */
+        .input-plain {
+            width: 100%;
+            padding: 0.5rem 0.9rem;
+            background: #fff;
+            border: 1px solid #e6e9ef;
+            border-radius: 10px;
+            box-shadow: 0 1px 2px rgba(2, 6, 23, 0.03);
+            font-size: 0.95rem;
+            color: #0f172a;
+        }
+
+        .input-plain::placeholder {
+            color: #94a3b8;
+        }
+
+        .input-plain:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.06);
+            border-color: rgba(59, 130, 246, 0.8);
+        }
+
+        .icon-input {
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: .9rem;
+            color: #94a3b8
+        }
+    </style>
+
+    <div class="w-full max-w-[420px] p-4">
+        <!-- Logo and header -->
+        <div class="text-center mb-8">
+            <div
+                class="inline-flex items-center justify-center w-20 h-20 bg-blue-600 rounded-3xl shadow-lg shadow-blue-200 mb-4 transform rotate-3">
+                <i class="fas fa-screwdriver-wrench text-white text-3xl"></i>
+            </div>
+            <h1 class="text-3xl font-black text-slate-800 tracking-tight">
+                Khushnaw <span class="text-blue-600">Service Center</span>
             </h1>
-            <p class="text-slate-500 font-medium text-lg">بەخێربێیت بۆ سیستەمی بەڕێوەبردن</p>
+            <p class="text-slate-500 mt-2">Welcome to the admin dashboard</p>
         </div>
 
-        <div class="w-full sm:max-w-md mt-6 px-8 py-10 bg-white shadow-[0_20px_50px_rgba(8,_112,_184,_0.1)] overflow-hidden sm:rounded-2xl border border-slate-100">
+        <!-- کارتی لۆگین -->
+        <div class="glass-card p-8 md:p-10 bg-white">
+            <form wire:submit="login" class="space-y-6">
 
-            <form wire:submit="login" dir="rtl">
-                <!-- Email Address -->
+                <!-- Email -->
                 <div>
-                    <label for="email" class="block font-bold text-sm text-slate-700 mb-2">ئیمەیڵ</label>
-                    <input wire:model="form.email" id="email" class="block mt-1 w-full rounded-xl border-slate-200 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition duration-200 py-3" type="email" name="email" required autofocus autocomplete="username" />
-                    <x-input-error :messages="$errors->get('form.email')" class="mt-2" />
+                    <label class="block text-sm font-medium text-slate-700 mb-2 ml-2">Email</label>
+                    <div class="relative">
+                        <i class="fas fa-envelope absolute icon-input"></i>
+                        <input wire:model="form.email" type="email" placeholder="example@gmail.com" aria-label="email"
+                            autocomplete="email" class="input-plain pl-10" />
+                    </div>
                 </div>
 
                 <!-- Password -->
-                <div class="mt-6">
-                    <label for="password" class="block font-bold text-sm text-slate-700 mb-2">پاسۆرد</label>
-                    <input wire:model="form.password" id="password" class="block mt-1 w-full rounded-xl border-slate-200 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200 focus:ring-opacity-50 transition duration-200 py-3" type="password" name="password" required autocomplete="current-password" />
-                    <x-input-error :messages="$errors->get('form.password')" class="mt-2" />
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2 ml-2">Password</label>
+                    <div class="relative">
+                        <i class="fas fa-lock absolute icon-input"></i>
+                        <input wire:model="form.password" type="password" placeholder="••••••••" aria-label="password"
+                            autocomplete="current-password" class="input-plain pl-10" />
+                    </div>
                 </div>
 
-                <!-- Remember Me -->
-                <div class="block mt-6 flex items-center justify-between">
-                    <label for="remember_me" class="inline-flex items-center">
-                        <input id="remember_me" type="checkbox" class="rounded-md border-slate-300 text-blue-600 shadow-sm focus:ring-blue-500" name="remember">
-                        <span class="ms-2 text-sm text-slate-600 font-medium">بمبێرەوە یاد</span>
-                    </label>
+                <!-- Sign in button -->
+                <button type="submit"
+                    class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow transition-all active:scale-95 flex items-center justify-center gap-3">
+                    Sign in
+                    <i class="fas fa-arrow-right"></i>
+                </button>
 
-                    @if (Route::has('password.request'))
-                        <a class="text-sm text-blue-600 hover:text-blue-800 font-semibold transition duration-200" href="{{ route('password.request') }}" wire:navigate>
-                            پاسۆردت بیرچووە؟
-                        </a>
-                    @endif
-                </div>
-
-                <div class="flex items-center justify-end mt-8">
-                    <button class="w-full inline-flex justify-center items-center px-6 py-3 bg-blue-600 border border-transparent rounded-xl font-bold text-white uppercase tracking-widest hover:bg-blue-700 active:bg-blue-900 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition ease-in-out duration-150 shadow-lg shadow-blue-200">
-                        چوونە ژوورەوە
-                    </button>
+                <div class="text-center mt-4">
+                    <a href="#" class="text-sm font-bold text-blue-600 hover:underline">Forgot your password?</a>
                 </div>
             </form>
         </div>
 
-        <div class="mt-8 text-slate-400 text-xs font-medium uppercase tracking-widest">
-            &copy; {{ date('Y') }} Khoshnaw Group - All Rights Reserved
-        </div>
+        <p class="text-center mt-8 text-slate-400 text-sm font-medium">
+            © 2025 All rights reserved to <span class="text-slate-600">Khushnaw Group</span>
+        </p>
     </div>
-
-    <style>
-        @keyframes fade-in-down {
-            0% { opacity: 0; transform: translateY(-20px); }
-            100% { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in-down { animation: fade-in-down 0.8s ease-out; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    </style>
-</div> <!-- کۆتایی تاگە سەرەکییەکە -->
+</div>
